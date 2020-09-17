@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    let drumSoundPlayer = try! AVAudioPlayer(data: NSDataAsset(name: "drumSound")!.data)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func tapDrumButton(){
+        
+        //２回押されたら０に戻す．
+        drumSoundPlayer.currentTime = 0
+        
+        //ドラムの音を再生する．
+        drumSoundPlayer.play()
+    }
 
+    
 }
 
