@@ -11,6 +11,11 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
+    //ドラムを表示する箱を作る．
+    @IBOutlet var drumButton: UIButton!
+    
+    //ドラムのサウンドプレイヤーを読み込んで，プレイヤーを作る．
+    
     let drumSoundPlayer = try! AVAudioPlayer(data: NSDataAsset(name: "drumSound")!.data)
     
     override func viewDidLoad() {
@@ -18,7 +23,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func tapDrumButton(){
+    @IBAction func touchDownDrumButton(){
+        
+        //ドラムがなっている画像への切り替え
+        drumButton.setImage(UIImage(named: "drumPlayingImage"), for: .normal)
         
         //２回押されたら０に戻す．
         drumSoundPlayer.currentTime = 0
@@ -27,6 +35,9 @@ class ViewController: UIViewController {
         drumSoundPlayer.play()
     }
 
-    
+    @IBAction func touchDwonDrumButton() {
+        //ドラムがなっていない画像への切り替え
+        drumButton.setImage(UIImage(named: "drumImage"), for: .normal)
+    }
 }
 
